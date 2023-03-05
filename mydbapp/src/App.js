@@ -1,11 +1,10 @@
-import React from 'react'
-import Users from './Users'
+import { Main } from './Components/Main'
+import './App.css'
 
 const App = () => {
-
   return (
     <div>
-      <Users />
+      <Main />
     </div>
   )
 }
