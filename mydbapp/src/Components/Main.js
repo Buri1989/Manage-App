@@ -1,13 +1,14 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { getAllUsers, getUserPosts, getUsersTasks } from '../Utils/utils';
+/*import Comp */
 import Users from './Users'
 import Right from './Right'
 import NewUser from './NewUser'
 
-
-
+/*createContext */
 export const UpdateContext = createContext('default value');
 export const RightContext = createContext('default')
+
 
 const Main = () => {
     /*use state */
