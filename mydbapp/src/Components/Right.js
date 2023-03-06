@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Button from './Button'
 import NewPost from './NewPost'
-import NewTodos from './NewTodos'
+import NewTodo from './NewTodo'
 import PostList from './PostList'
 import TodoList from './TodoList'
 
@@ -21,12 +21,14 @@ const Right = (props) => {
 
     return (
         <div>
-            <div style={{ marginBottom: "20px", marginTop: "40px" }}>
+            <div style={{
+                marginBottom: "20px", marginTop: "40px"
+            }}>
                 <span style={{ marginRight: "70px" }}>{!isAddTodo ? "Todos - User" : "New Todo - User"} {props.id}</span>
                 {!isAddTodo && <Button name="Add" width="100px" height="30px" onClick={() => setIsAddTodo(true)} />}
                 <br />
             </div>
-            {isAddTodo ? <NewTodos setIsAddTodo={setIsAddTodo} userId={props.id} /> : <TodoList todoList={filteredTodos} />}
+            {isAddTodo ? <NewTodo setIsAddTodo={setIsAddTodo} userId={props.id} /> : <TodoList todoList={filteredTodos} />}
             <div style={{ marginBottom: "20px" }}>
                 <span style={{ marginRight: "70px" }}>{!isAddPost ? "Todos - User" : "New Todo - User"} {props.id}</span>
                 {!isAddPost && <Button name="Add" width="100px" height="30px" onClick={() => setIsAddPost(true)} />}

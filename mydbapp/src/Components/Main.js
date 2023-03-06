@@ -62,7 +62,7 @@ const Main = () => {
     }
 
     /*Update task that are done */
-    const updateTaskDone = (userId, taskId) => {
+    const updateTodoDone = (userId, taskId) => {
         let idData = userTodos.map(item => item.id);
         let index = idData.indexOf(taskId);
         const newTaskInfo = [...userTodos];
@@ -77,11 +77,11 @@ const Main = () => {
     };
 
     /*Add task */
-    const addTask = (newTask) => {
-        setUserTodos([newTask, ...userTodos])  //and update usersData list with ++ hasTodos, item contains the userId
+    const addTodo = (newTodo) => {
+        setUserTodos([newTodo, ...userTodos])  //and update usersData list with ++ hasTodos, item contains the userId
 
         let idData = users.map(item => item.id)
-        let index = idData.indexOf(newTask.userId)
+        let index = idData.indexOf(newTodo.userId)
         let newUsersInfo = [...users]
         newUsersInfo[index].hasTodos++;
         setUsers(newUsersInfo)
@@ -115,7 +115,7 @@ const Main = () => {
                                 <Users users={users} navUser={navUser} />
                             </td>
                             <td valign='top'>
-                                <RightContext.Provider value={[updateTaskDone, addTask, addPost]}>
+                                <RightContext.Provider value={[updateTodoDone, addTodo, addPost]}>
                                     {showRightData && <Right id={idPicked} userTodos={userTodos} userPosts={userPosts} />}
                                     {showAddUser && <NewUser addUser={addUser} setShowAddUser={setShowAddUser} />}
                                 </RightContext.Provider>

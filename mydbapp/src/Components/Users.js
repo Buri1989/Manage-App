@@ -21,7 +21,9 @@ const Users = (props) => {
     }
 
     return (
-        <div style={{ width: "600px", borderStyle: "solid", borderColor: "grey", margin: 0 | 20, borderRadius: "25px" }}>
+        <div style={{
+            width: "600px", borderStyle: "solid", borderColor: "grey", margin: 0 | 20, borderRadius: "25px"
+        }}>
             <span style={{ margin: 0 | 10 }}>Search</span >
             <input type="text" onChange={changeSearch} style={{ margin: 15 | 20 }} />
             <Button name="Add" width="70px" onClick={props.navUser} />
