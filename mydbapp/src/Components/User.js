@@ -6,7 +6,7 @@ import "../App.css";
 
 
 function User(props) {
-    const [showOther, setShowOther] = useState(false);
+    const [isShowOther, setIsShowOther] = useState(false);
     const [updateData, setUpdateData] = useState({
         id: props.data.id, name: props.data.name, email: props.data.email, address: props.data.address,
         hasTodos: props.data.hasTodos
@@ -14,12 +14,12 @@ function User(props) {
 
 
     const mouseOver = () => {
-        setShowOther(true);
+        setIsShowOther(true);
     };
 
 
     const mouseClick = () => {
-        setShowOther(!showOther);
+        setIsShowOther(!isShowOther);
     };
 
     const [updateCallback, deleteCallback, selectCallback] = useContext(UpdateContext)
@@ -50,7 +50,7 @@ function User(props) {
                 onChange={(event) => { setUpdateData({ ...OtherData, email: event.target.value }) }} /><br />
             <div style={{ marginTop: "20px", margin: "8px", display: "inline-block" }}>
                 <OtherData mouseOver={mouseOver} mouseClick={mouseClick} />
-                {showOther && <>
+                {isShowOther && <>
                     <br />
                     <label className='blue-Under'>Street : </label>
                     <input type="text" value={updateData.address.street}
@@ -62,7 +62,7 @@ function User(props) {
                     <input type="text" value={updateData.address.zipcode}
                         onChange={(event) => { setUpdateData({ ...updateData.address, zipcode: event.target.value }) }} /><br />
                 </>}
-                <div style={{ display: "inline-block", marginLeft: showOther ? "150px" : "0px" }}>
+                <div style={{ display: "inline-block", marginLeft: isShowOther ? "150px" : "0px" }}>
                     <Button name="Update" width="70px" height="35px" onClick={updateHandler} />
                     <Button name="Update" width="70px" height="35px" onClick={deleteHandler} />
                 </div>
