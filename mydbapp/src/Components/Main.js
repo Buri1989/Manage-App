@@ -12,7 +12,7 @@ export const RightContext = createContext('default')
 
 const Main = () => {
     /*use state */
-    const [users, setUsers] = useState([]);
+    const [usersData, setUsersData] = useState([]);
     const [userTodos, setUserTodos] = useState([]);
     const [userPosts, setUserPosts] = useState([]);
     const [showRightData, setShowRightData] = useState(false);
@@ -29,29 +29,30 @@ const Main = () => {
             users.forEach(element => {
                 element["hasTodos"] = todos.filter(index => (index.userId === element.id) && (index.completed === false)).length
             });
-            setUsers(users);
+            setUsersData(users);
             setUserTodos(todos);
             setUserPosts(posts);
         }
+
         fetchData();
     }, []);
 
     /*Update user info */
     const updateUserInfo = (userInfo) => {
-        const idData = users.map(item => item.id);
+        const idData = usersData.map(item => item.id);
         const index = idData.indexOf(userInfo.id);
-        const newUserInfo = [...users];
+        const newUserInfo = [...usersData];
         newUserInfo[index] = userInfo;
-        setUsers(newUserInfo);
+        setUsersData(newUserInfo);
     };
 
     /*Delete user info */
     const deleteUserInfo = (id) => {
-        const idData = users.map(item => item.id);
+        const idData = usersData.map(item => item.id);
         const index = idData.indexOf(id);
-        const newUserInfo = [...users];
+        const newUserInfo = [...usersData];
         newUserInfo.splice(index, 1);
-        setUsers(newUserInfo);
+        setUsersData(newUserInfo);
     };
 
     /*Select user id */
@@ -69,22 +70,22 @@ const Main = () => {
         newTaskInfo[index].completed = true;
         setUserTodos(newTaskInfo);
 
-        idData = users.map(item => item.id);
+        idData = usersData.map(item => item.id);
         index = idData.indexOf(userId);
-        const newUserInfo = [...users];
+        const newUserInfo = [...usersData];
         newUserInfo[index].hasTodos--;
-        setUsers(newUserInfo);
+        setUsersData(newUserInfo);
     };
 
     /*Add task */
     const addTodo = (newTodo) => {
         setUserTodos([newTodo, ...userTodos])  //and update usersData list with ++ hasTodos, item contains the userId
 
-        let idData = users.map(item => item.id)
+        let idData = usersData.map(item => item.id)
         let index = idData.indexOf(newTodo.userId)
-        let newUsersInfo = [...users]
+        let newUsersInfo = [...usersData]
         newUsersInfo[index].hasTodos++;
-        setUsers(newUsersInfo)
+        setUsersData(newUsersInfo)
     }
 
     /*Add Task */
@@ -94,7 +95,7 @@ const Main = () => {
 
     /*Add User */
     const addUser = (newUser) => {
-        setUsers([newUser, ...users]);
+        setUsersData([newUser, ...usersData]);
         setShowAddUser(false)
     };
 
@@ -112,7 +113,7 @@ const Main = () => {
                     <tbody>
                         <tr>
                             <td valign='top'>
-                                <Users users={users} navUser={navUser} />
+                                <Users users={usersData} navUser={navUser} />
                             </td>
                             <td valign='top'>
                                 <RightContext.Provider value={[updateTodoDone, addTodo, addPost]}>
