@@ -4,14 +4,14 @@ import Button from './Button'
 
 const NewTodos = (props) => {
     const contextArray = useContext(RightContext);
-    const addTodoItem = contextArray[1];
+    const addNewTodo = contextArray[1];
     const [todoTitle, setTodoTitle] = useState("");
 
     const addClickForTodo = () => {
         const obj = {
             id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, completed: false, title: todoTitle
         };
-        addTodoItem(obj);
+        addNewTodo(obj);
         props.setIsAddTodo(false)
     }
 
