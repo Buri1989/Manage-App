@@ -26,7 +26,8 @@ const Users = (props) => {
             <input type="text" onChange={changeSearch} style={{ margin: 15 | 20 }} />
             <Button name="Add" width="70px" onClick={props.navUser} />
             <br />
-            {filteredList.map(item => <User key={item.id} data={item} selectIdCall={selectIdCall} boolSelect={item.id === selectedId} />)}
+            {filteredList.map(item => <User key={item.id} data={item} selectIdCall={selectIdCall}
+                boolSelect={item.id === selectedId} />)}
 
         </div>
     )
