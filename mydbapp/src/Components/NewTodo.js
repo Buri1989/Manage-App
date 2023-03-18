@@ -8,7 +8,7 @@ export const NewTodo = (props) => {
     const addTodoItem = contextArr[1]
     const [todoTitle, setTodoTitle] = useState("")
     const addClickHandler = () => {
-        let objAdd = { id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, completed: false, title: todoTitle }
+        const objAdd = { id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, completed: false, title: todoTitle }
         addTodoItem(objAdd)
         props.setIsAddTodo(false)
     }
@@ -17,7 +17,7 @@ export const NewTodo = (props) => {
         <>
             <div style={{
                 width: "550px", borderStyle: "solid",
-                paddingTop: "40px", paddingBottom: "15px", borderColor: "black", marginTop: "20px", marginBottom: "8px" /* display: "inline-block" */
+                paddingTop: "40px", paddingBottom: "15px", borderColor: "black", marginTop: "20px", marginBottom: "8px"
             }}>
                 <span className="blue-Under" style={{ marginLeft: "70px" }}>Title :</span>
                 <input style={{ marginLeft: "60px" }} type="text" onChange={(e) => setTodoTitle(e.target.value)} />

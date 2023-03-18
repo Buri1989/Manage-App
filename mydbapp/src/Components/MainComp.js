@@ -3,6 +3,7 @@ import { useState, useEffect, createContext } from "react"
 import { getAllUsersData, getUserPosts, getUserTodos } from "../Utils/utils"
 import { RightComp } from "./RightComp"
 import { NewUser } from "./NewUser"
+
 export const UpdateContext = createContext("default value")
 export const RightCompContext = createContext("default")
 
@@ -16,10 +17,13 @@ export const MainComp = () => {
     const [idSelected, setIdSelected] = useState(0)
     useEffect(
         () => {
-            const getAllData = async () => {
-                let usersList = await getAllUsersData()
-                let todos = await getUserTodos()
-                let posts = await getUserPosts()
+            const fetchData = async () => {
+                const usersList = await getAllUsersData()
+                //console.log("🚀 ~ file: MainComp.js:21 ~ fetchData ~ usersList:", usersList)
+                const todos = await getUserTodos()
+                //console.log("🚀 ~ file: MainComp.js:23 ~ fetchData ~ todos:", todos)
+                const posts = await getUserPosts()
+                //console.log("🚀 ~ file: MainComp.js:25 ~ fetchData ~ posts:", posts)
                 usersList.forEach(element => {
                     element["hasTodos"] = todos.filter(item => item.userId === element.id &&
                         item.completed === false).length
@@ -29,23 +33,23 @@ export const MainComp = () => {
                 setPostsList(posts)
 
             }
-            getAllData()
+            fetchData()
         }, []
 
     )
     const updateUsersData = (userItem) => {
-        let idList = usersData.map(item => item.id)
-        let index = idList.indexOf(userItem.id)
-        let newUsersData = [...usersData]
+        var idList = usersData.map(item => item.id)
+        var index = idList.indexOf(userItem.id)
+        const newUsersData = [...usersData]
         newUsersData[index] = userItem
         setUsersData(newUsersData)
     }
 
     const deleteUserData = (id) => {
-        let idList = usersData.map(item => item.id)
-        let index = idList.indexOf(id)
+        const idList = usersData.map(item => item.id)
+        const index = idList.indexOf(id)
 
-        let newUsersData = [...usersData]
+        const newUsersData = [...usersData]
         newUsersData.splice(index, 1)
         setUsersData(newUsersData)
     }
@@ -57,15 +61,15 @@ export const MainComp = () => {
     }
 
     const updateTaskDone = (userId, taskId) => {
-        let idList = todosList.map(item => item.id)
-        let index = idList.indexOf(taskId)
-        let newTodosList = [...todosList]
+        var idList = todosList.map(item => item.id)
+        var index = idList.indexOf(taskId)
+        const newTodosList = [...todosList]
         newTodosList[index].completed = true
         setTodosList(newTodosList)
 
         idList = usersData.map(item => item.id)
         index = idList.indexOf(userId)
-        let newUsersData = [...usersData]
+        var newUsersData = [...usersData]
         newUsersData[index].hasTodos--;
         setUsersData(newUsersData)
     }
@@ -73,9 +77,9 @@ export const MainComp = () => {
     const addTodoItem = (newItem) => {
         setTodosList([newItem, ...todosList])  //and update usersData list with ++ hasTodos, item contains the userId
 
-        let idList = usersData.map(item => item.id)
-        let index = idList.indexOf(newItem.userId)
-        let newUsersData = [...usersData]
+        const idList = usersData.map(item => item.id)
+        const index = idList.indexOf(newItem.userId)
+        const newUsersData = [...usersData]
         newUsersData[index].hasTodos++;
         setUsersData(newUsersData)
     }
@@ -120,8 +124,3 @@ export const MainComp = () => {
     )
 }
 
-/*Use filter if you want to find all items in an array that meet a specific condition. 
-Use find if you want to check if that at least one item meets a specific condition. 
-Use includes if you want to check if an array contains a particular value. 
-Use indexOf if you want to find the index of a particular item in an array.24 Jun 2020
-*/

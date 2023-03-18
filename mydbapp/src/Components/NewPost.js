@@ -9,7 +9,7 @@ export const NewPost = (props) => {
     const [postBody, setPostBody] = useState("")
 
     const addClickHandler = () => {
-        let objAdd = { id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, title: postTitle, body: postBody }
+        const objAdd = { id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, title: postTitle, body: postBody }
         addPostItem(objAdd)
         props.setIsAddPost(false)
     }

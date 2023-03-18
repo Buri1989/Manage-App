@@ -1,11 +1,12 @@
 import { ButtonComp } from "./ButtonComp"
 import { useState } from "react"
+
 export const NewUser = (props) => {
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")
 
     const addClickHandler = () => {
-        let newItem = {
+        const newItem = {
             id: Math.floor(Math.random() * 10000) + 1000, name: userName, email: userEmail,
             address: { street: "", city: "", zipcode: "" }, hasTodos: 0
         }

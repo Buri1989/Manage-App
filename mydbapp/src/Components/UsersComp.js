@@ -5,14 +5,14 @@ export const UsersComp = (props) => {
 
     useEffect(() => {
 
-        setFilteredList(props.usersData)  //doesn't work with  [], must ask dima/eyal
+        setFilteredList(props.usersData)
 
     }, [props.usersData]
     )
 
-    const changeSearchHandler = (e) => {
-        //console.log("search changed: " +e.target.value)
-        let strSearch = e.target.value.toLowerCase()
+    const changeSearchHandler = (event) => {
+
+        let strSearch = event.target.value.toLowerCase()
         setFilteredList(props.usersData.filter(item => (item.name.toLowerCase().includes(strSearch) ||
             item.email.toLowerCase().includes(strSearch))))
     }
