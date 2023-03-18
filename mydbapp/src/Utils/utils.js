@@ -1,30 +1,21 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const usersUrl = 'https://jsonplaceholder.typicode.com/users';
-const todosUrl = 'https://jsonplaceholder.typicode.com/todos/';
-const postsUrl = 'https://jsonplaceholder.typicode.com/posts/';
-
-/*Getting all users data from - 'https://jsonplaceholder.typicode.com/users' */
-const getAllUsers = async () => {
-    const { data: userData } = await axios.get(usersUrl);
-    const fullData = userData.map((user) => ({
-        "id": user.id, "name": user.name, "email": user.email,
-        "address": { "street": user.address.street, "city": user.address.city, "zipcode": user.address.zipcode }
+export const getAllUsersData = async () => {
+    let resp = await axios.get("https://jsonplaceholder.typicode.com/users")
+    let newLst = resp.data.map(item => ({
+        "id": item.id, "name": item.name, "email": item.email,
+        "address": { "street": item.address.street, "city": item.address.city, "zipcode": item.address.zipcode }
     }))
-    return fullData;
-};
+    return newLst
+}
 
-/*Getting all users todos from - 'https://jsonplaceholder.typicode.com/todos/' */
-const getUsersTasks = async () => {
-    const { data: userTasks } = await axios.get(todosUrl);
-    return userTasks;
-};
+export const getUserTodos = async () => {
+    let resp = await axios.get("https://jsonplaceholder.typicode.com/todos/")
+    return resp.data
+}
 
-/*Getting all users posts from - 'https://jsonplaceholder.typicode.com/posts/' */
-const getUserPosts = async () => {
-    const { data: userPosts } = await axios.get(postsUrl);
-    return userPosts;
-};
-
-export { getAllUsers, getUsersTasks, getUserPosts }
+export const getUserPosts = async () => {
+    let resp = await axios.get("https://jsonplaceholder.typicode.com/posts/")
+    return resp.data
+}
 
