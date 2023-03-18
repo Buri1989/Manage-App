@@ -1,6 +1,6 @@
 import { UsersComp } from "./UsersComp"
 import { useState, useEffect, createContext } from "react"
-import { getAllUsersData, getUserPosts, getUserTodos } from "../Utils/UsersUtils"
+import { getAllUsersData, getUserPosts, getUserTodos } from "../Utils/utils"
 import { RightComp } from "./RightComp"
 import { NewUser } from "./NewUser"
 export const UpdateContext = createContext("default value")

@@ -1,38 +1,33 @@
-import React, { useContext, useState } from 'react'
-import { RightContext } from './Main'
-import Button from './Button'
+import { ButtonComp } from "./ButtonComp"
+import { RightCompContext } from './MainComp'
+import { useContext, useState } from 'react'
 
-const NewTodos = (props) => {
-    const contextArray = useContext(RightContext);
-    const addNewTodo = contextArray[1];
-    const [todoTitle, setTodoTitle] = useState("");
+export const NewTodo = (props) => {
 
-    const addClickForTodo = () => {
-        const obj = {
-            id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, completed: false, title: todoTitle
-        };
-        addNewTodo(obj);
+    const contextArr = useContext(RightCompContext)
+    const addTodoItem = contextArr[1]
+    const [todoTitle, setTodoTitle] = useState("")
+    const addClickHandler = () => {
+        let objAdd = { id: Math.floor(Math.random() * 10000) + 1000, userId: props.userId, completed: false, title: todoTitle }
+        addTodoItem(objAdd)
         props.setIsAddTodo(false)
     }
 
-
     return (
-        <div style={{
-            width: "550px", borderStyle: "solid",
-            paddingTop: "40px", paddingBottom: "15px", borderColor: "black", marginTop: "20px", marginBottom: "8px"
-        }}>
-            <span className='blue-Under' style={{ marginLeft: "70px" }}>Title</span>
-            <input style={{ marginLeft: "60px" }} type="text" onChange={(event) => setTodoTitle(event.target.value)} />
-            <br />
+        <>
             <div style={{
-                marginTop: "40px", marginLeft: "220px"
+                width: "550px", borderStyle: "solid",
+                paddingTop: "40px", paddingBottom: "15px", borderColor: "black", marginTop: "20px", marginBottom: "8px" /* display: "inline-block" */
             }}>
-                <Button name="Cancel" width="70px" height="30px" onClick={() => props.setIsAddTodo(false)} />
-                <Button name="Add" width="70px" height="30px" onClick={addClickForTodo} />
-
+                <span className="blue-Under" style={{ marginLeft: "70px" }}>Title :</span>
+                <input style={{ marginLeft: "60px" }} type="text" onChange={(e) => setTodoTitle(e.target.value)} />
+                <br />
+                <div style={{ marginTop: "40px", marginLeft: "220px" }}>
+                    <ButtonComp name="Cancel" width="70px" height="30px" onClick={() => props.setIsAddTodo(false)} />
+                    <ButtonComp name="Add" width="70px" height="30px" onClick={addClickHandler} />
+                </div>
             </div>
-        </div>
+            <br />
+        </>
     )
-}
-
-export default NewTodos
+} 
