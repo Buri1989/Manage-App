@@ -22,7 +22,7 @@ export const UsersComp = (props) => {
     const [filteredList, setFilteredList] = useState(props.usersData)
     const selectIdCall = (id) => {
         setSelectedId(id)
-        //console.log("called from child: " + id)
+
     }
     return (
         <div style={{ width: "600px", borderStyle: "solid", borderColor: "grey", margin: 0 | 20, borderRadius: "25px" }}>
